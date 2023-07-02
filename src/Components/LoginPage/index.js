@@ -1,6 +1,6 @@
 import {useState} from "react"
 import { useNavigate } from "react-router-dom";
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup,createUserWithEmailAndPassword,signInWithEmailAndPassword } from 'firebase/auth';
 import { auth,provider } from "../Firebase/firebase-config";
 
 
@@ -13,6 +13,9 @@ import "./index.css"
 const LoginPage = () => {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [currentForm,setCurrentForm] = useState("signin")
+    const [errorMsg,setErrorMsg] = useState("")
+    const [signInErrMsg,setSignInErrMsg] = useState("")
     const navigate = useNavigate();
 
     const onChangemail = (event) => {
@@ -36,6 +39,91 @@ const LoginPage = () => {
        }
     }
 
+    const signUpUser =(event) => {
+        event.preventDefault()
+        createUserWithEmailAndPassword(auth,email,password)
+        .then((response)=>{
+            setCurrentForm("signin")
+            setErrorMsg("")
+            setSignInErrMsg("")
+            console.log(response)
+        })
+        .catch((error) => {
+            setErrorMsg(error.message)
+            console.log(error.message)
+        })
+    }
+
+    const signInuser = event => {
+        event.preventDefault()
+        signInWithEmailAndPassword(auth,email,password)
+        .then((response) => {
+            navigate("/dashboard")
+            setSignInErrMsg("")
+            console.log(response)
+        })
+        .catch((error) =>{
+            setSignInErrMsg(error.message)
+            console.log(error.message)
+            
+        })
+    }
+    
+
+    const renderSignInForm = () => {
+
+        const onClickRegister = () => {
+            setCurrentForm("signup")
+        }
+
+        return(
+            
+            <div className="sign_in_container">
+            <h1 className="sign_in_heading">Sign In</h1>
+            <p className="sign_in_text">Sign in to your account</p>
+            <div className="social_signin_container">
+
+        
+              <button onClick={signInWithGoogle} className="social_sign_in_button">
+                 <FcGoogle className="social_logo" /> Sign in with Google
+                </button>
+           
+                <button className="social_sign_in_button">
+                    <AiFillApple className="social_logo" />Sign in with Apple
+                </button>
+            </div>
+            <form onSubmit={signInuser} className="form_container">
+                 <label className="input_label" htmlFor="email">Email address</label>
+                 <input value={email} type="email" id="email" placeholder="Enter Email" className="input_field" onChange={onChangemail} />
+                 <label className="input_label" htmlFor="password">Password</label>
+                 <input value={password} type="password" id="password" placeholder="Enter Password" className="input_field" onChange={onChangePassword}/>
+                 <span className="forgot_password">Forgot password?</span>
+                 <p className="errMsg">{signInErrMsg}</p>
+                 <button type="submit" className="sign_in_button">Sign In </button>
+            </form>
+         <p className="right_bar_container_text">Don't have an account?<span onClick={onClickRegister} className="register_text">Register here</span></p>
+
+
+        </div>
+            
+        )
+    }
+
+    const renderSignUpForm = () => {
+        return (
+            
+            <form onSubmit={signUpUser} className="form_container">
+                <h1 className="sign_up_text">Sign Up</h1>
+                 <label className="input_label" htmlFor="email">Email address</label>
+                 <input value={email} type="email" id="email" placeholder="Enter Email" className="input_field" onChange={onChangemail} />
+                 <label className="input_label" htmlFor="password">Password</label>
+                 <input value={password} type="password" id="password" placeholder="Enter Password" className="input_field" onChange={onChangePassword}/>
+                 <p className="errMsg">{errorMsg}</p>
+                 <button type="submit" className="sign_in_button">Sign Up </button>
+            </form>
+
+        )
+    }
     
 
     
@@ -48,36 +136,19 @@ const LoginPage = () => {
                         Board.
                     </h1>
                 </div>
+
+                
                 <div className="right_bar_container">
-                    <div className="sign_in_container">
-                        <h1 className="sign_in_heading">Sign In</h1>
-                        <p className="sign_in_text">Sign in to your account</p>
-                        <div className="social_signin_container">
+                    {currentForm === "signin"?renderSignInForm():renderSignUpForm()}
 
-                    
-                          <button onClick={signInWithGoogle} className="social_sign_in_button">
-                             <FcGoogle className="social_logo" /> Sign in with Google
-                            </button>
-                       
-                            <button className="social_sign_in_button">
-                                <AiFillApple className="social_logo" />Sign in with Apple
-                            </button>
-                        </div>
-                        <form className="form_container">
-                             <label className="input_label" htmlFor="email">Email address</label>
-                             <input value={email} type="email" id="email" placeholder="Enter Email" className="input_field" onChange={onChangemail} />
-                             <label className="input_label" htmlFor="password">Password</label>
-                             <input value={password} type="password" id="password" placeholder="Enter Password" className="input_field" onChange={onChangePassword}/>
-                             <span className="forgot_password">Forgot password?</span>
-                             <button type="submit" className="sign_in_button">Sign In </button>
-                        </form>
-                     <p className="right_bar_container_text">Don't have an account?<span className="register_text">Register here</span></p>
-
-
-                    </div>
                 </div>
+                
             </div>
 
+
+
+
+                
     )
 }
 
