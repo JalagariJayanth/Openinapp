@@ -1,14 +1,49 @@
 .dashboard_container{
-    display: flex;
     background-color: #f5f5f5;
     min-height:100vh;
-    padding:32px;
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+       
+}
+.content_container{
+  display:flex;
+  justify-content:center;
+  width: 100%;
+  max-width:1250px;
+ 
 }
 .side_bar_container{
     background-color: #000;
-    width:23%;
+    min-width:22%;
     border-radius:10px;
 }
+
+@media screen and (max-width:768px){
+  .side_bar_container{
+    display: none;
+  }
+}
+
+
+.right_side_container{
+  display: flex;
+  flex-direction: column;
+  margin-left:40px;
+  width:78%;
+}
+
+@media screen and (max-width:768px){
+  .right_side_container{
+    width:100%;
+  }
+}
+
+
+
+
 .side_bar_content{
   display: flex;
   flex-direction: column;
@@ -45,17 +80,25 @@
     width:17px;
     padding-right:12px;
 }
-.right_side_container{
-    display: flex;
-    flex-direction: column;
-    margin-left:45px;
-    width:100%;
+
+.right_side_content_container{
+
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  
 }
 .dashboard_search_container{
   display: flex;
   align-items: center;
   justify-content:space-between;
 
+}
+@media screen and (max-width:576px){
+  .dashboard_search_container{
+    display:flex;
+    flex-direction:column;
+  }
 }
 .search_bell_profile_container{
     display:flex;
@@ -77,6 +120,73 @@
   padding: 6px 8px;
   border-radius: 6px;
 }
+.hamburger-icon-button{
+  display: flex;
+  cursor: pointer;
+  background-color:transparent;
+  border: none;
+  padding-right:5px;
+}
+@media screen and (min-width:768px) {
+  .hamburger-icon-button{
+    display:none;
+  }
+  
+}
+.popup-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  background-color: #24080cad;
+  width: 100vw;
+  height: 100vh;
+}
+.modal-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 458px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal-container {
+    max-width: 1110px;
+  }
+}
+
+.close-button {
+  align-self: flex-end;
+  background-color:transparent;
+  color:#fff;
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin-top: 32px;
+  outline: none;
+  cursor: pointer;
+}
+
+.nav-items-list{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0px;
+  width: 350px;
+}
+
+.nav-item{
+  display: flex;
+gap: 20px;
+align-items: center;
+margin:7px;
+padding-left: 10px;
+
+} 
+
+
 .search_feild{
     border: none;
     outline:none;
@@ -85,24 +195,33 @@
 .bell_icon{
     height:22px;
     width:20px;
-    padding:18px;
+    padding:12px;
 }
 .profile_pic{
     height:30px;
     width:30px;
+    padding-right:8px;
 }
 .cards_list{
 list-style-type: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content:space-between;
+  align-items: center;
 }
 .graph_container{
   background-color: #ffffff;
   padding: 20px;
   border-radius: 14px;
 }
+@media screen  and (max-width:576px){
+  .graph_container{
+    width:250px;
+  }
+  
+}
+
 .right_side_cards_headings{
   color: #000;
   font-size:16px;
@@ -120,14 +239,35 @@ list-style-type: none;
     justify-content:space-between;
     margin-top:15px;
 }
+
+@media screen and (max-width:576px){
+  .right_side_card_items_container{
+    display: flex;
+    flex-direction:column; 
+  }
+}
 .right_side_card_container{
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
     border-radius: 14px;
     padding: 20px;
-    min-width:420px;
+    max-width: 350px;
+    width:100%;
 }
+
+@media screen and (max-width:992px){
+  .right_side_card_container{
+    width:250px;
+  }
+}
+@media screen and (max-width:768px){
+  .right_side_card_container{
+    margin-bottom:8px;
+  }
+}
+
+
 .heading_date_container{
     display: flex;
     align-items: center;
@@ -148,6 +288,7 @@ list-style-type: none;
     border-right:none;
     padding-left:8px;
     margin-top:10px;
+    
 }
 
 .schedule_name{
@@ -172,4 +313,5 @@ list-style-type: none;
     border-right:none;
     padding-left:8px;
     margin-top:10px;
+   
 }

@@ -5,7 +5,9 @@
   padding: 10px 36px;
   border-radius: 10px;
   width:150px;
-  height:100px;
+  align-self: center;
+  margin:5px;
+ 
 }
 .icon{
     height: 24px;

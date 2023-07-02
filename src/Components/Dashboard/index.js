@@ -8,11 +8,12 @@ import {
     FaRegBell
   } from 'react-icons/fa'
 
-  import {RiArrowRightSLine} from "react-icons/ri"
-
-  import {BsSearch,BsChevronDown} from "react-icons/bs"
-  
-  import { FiPieChart } from 'react-icons/fi'
+import {RiArrowRightSLine} from "react-icons/ri"
+import {BsSearch,BsChevronDown} from "react-icons/bs"
+import { FiPieChart } from 'react-icons/fi'
+import {GiHamburgerMenu} from 'react-icons/gi'
+import {IoMdClose} from 'react-icons/io'
+import Popup from 'reactjs-popup'
 
 import CardItem from "../CardItem"
 import Graph from "../Graph"
@@ -70,16 +71,7 @@ const GraphData = [
   ]
   
 
-
-
-
-
-
-
 class Dashboard extends Component{
-
-
-
 
     renderNavigationBar = () => {
         return(
@@ -120,11 +112,58 @@ class Dashboard extends Component{
     renderDashboard = () => {
         return(
             <div className="right_side_container">
+                <div className="right_side_content_container">
                  <div className="dashboard_search_container">
                     <h1 className="dashboard_search_container_heading">
                         Dashboard
                     </h1>
                 <div className="search_bell_profile_container">
+
+
+                <Popup
+                    modal
+                    trigger={
+                    <button
+                        className="hamburger-icon-button"
+                        type="button"
+                            
+                    >
+                        <GiHamburgerMenu size="30" />
+                    </button>
+                    }
+                    className="popup-content"
+                    >
+                    {close => (
+                        <div className="modal-container">
+                            <button
+                                className="close-button"
+                                type="button"
+                                testid="closeButton"
+                                onClick={() => close()}
+                            >
+                                <IoMdClose size="30" color="#616e7c" />
+                            </button>
+                            <ul className="nav-items-list">
+                                <li className="list_item">
+                                    <FiPieChart className="icon" /> Dashboard
+                                </li>
+                                <li className="list_item">
+                                    <FaTags className="icon" />Transactions
+                                </li>
+                                <li className="list_item">
+                                    <FaRegCalendar className="icon" />Schedule
+                                </li>
+                                <li className="list_item">
+                                    <FaRegUserCircle className="icon" /> Users
+                                </li>
+                                <li className="list_item">
+                                    <FaRegSun className="icon" />Settings
+                                </li>
+                            </ul>
+                        </div>
+                        )}
+             </Popup>
+
                     <div className="search_container">
                     <input className="search_feild" type="search" placeholder="Search..." />
                     <BsSearch />
@@ -179,7 +218,7 @@ class Dashboard extends Component{
 
                 </div>
 
-                  
+                </div>   
             </div>
         )
     }
@@ -189,8 +228,10 @@ class Dashboard extends Component{
     render(){
         return(
             <div className="dashboard_container">
+                <div className="content_container">
             {this.renderNavigationBar()}
             {this.renderDashboard()}
+            </div>
         </div>
 
 
