@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Openinapp/static/css/main.6b1650e3.css",
-    "main.js": "/Openinapp/static/js/main.a8877fa4.js",
+    "main.js": "/Openinapp/static/js/main.779f7b61.js",
     "index.html": "/Openinapp/index.html",
     "main.6b1650e3.css.map": "/Openinapp/static/css/main.6b1650e3.css.map",
-    "main.a8877fa4.js.map": "/Openinapp/static/js/main.a8877fa4.js.map"
+    "main.779f7b61.js.map": "/Openinapp/static/js/main.779f7b61.js.map"
   },
   "entrypoints": [
     "static/css/main.6b1650e3.css",
-    "static/js/main.a8877fa4.js"
+    "static/js/main.779f7b61.js"
   ]
 }
